@@ -1,4 +1,4 @@
-import { TimeCellProps } from "@/types/calendar";
+import { TimeCellProps } from "@/app/types/calendar";
 
 export default function TimeCell({ step, rowIndex, rowEnd }: TimeCellProps) {
     const formatTime = (mins: number) => {
@@ -11,7 +11,7 @@ export default function TimeCell({ step, rowIndex, rowEnd }: TimeCellProps) {
 
     return (
         <div
-            className="sticky left-0 flex items-center justify-center p-1 border-b border-r bg-purple-50 text-xs"
+            className="sticky left-0 flex items-center justify-center p-1 border-b border-r border-gray-400 bg-gray-200 text-xs text-gray-500"
             style={{ gridRow: rowIndex + 1, borderBottom: rowIndex === rowEnd ? "none" : "" }}
         >
             {formatTime(mins)}
