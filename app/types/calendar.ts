@@ -11,6 +11,11 @@ export type Lesson = {
     endTime: string;
 };
 
+export type TimeSlot = {
+    startTime: Date;
+    endTime: Date;
+};
+
 export type CalendarView = "day" | "3days" | "week";
 
 export type CalendarProps = {
@@ -18,7 +23,7 @@ export type CalendarProps = {
     startDate: Date;
     schedule: Schedule[];
     lessons: Lesson[];
-    onSlotSelect?: (slot: { startTime: Date; endTime: Date }) => void;
+    onSlotSelect?: (slot: TimeSlot) => void;
 };
 
 export type CalendarHeaderProps = {
@@ -32,8 +37,9 @@ export type CalendarGridProps = {
     step: number;
     days: number;
     currentDate: Date;
-    rowSlots: unknown[];
-    columnSlots: unknown[];
+    schedule: Schedule[];
+    lessons: Lesson[];
+    onSlotSelect?: (slot: TimeSlot) => void;
 };
 
 export type WeekCellProps = {
@@ -47,9 +53,19 @@ export type TimeCellProps = {
     rowEnd: number;
 };
 
+export type SlotType = "available" | "blocked" | "lesson";
+
+export type SlotStatus = {
+    type: SlotType;
+    lesson?: Lesson;
+    slots?: number;
+};
+
 export type SlotCellProps = {
+    status: SlotStatus;
     rowIndex: number;
     columnIndex: number;
     rowEnd: number;
     columnEnd: number;
+    onClick?: () => void;
 };

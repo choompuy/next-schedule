@@ -14,7 +14,7 @@ export default function CalendarHeader({ days, startDate, currentDate, onChange 
             </button>
 
             <button className="font-semibold text-lg text-center text-balance text-gray-800" onClick={() => onChange(new Date(startDate))}>
-                {currentDate.toDateString()} - {endDate.toDateString()}
+                {days <= 1 ? currentDate.toDateString() : `${currentDate.toDateString()} - ${endDate.toDateString()}`}
             </button>
 
             <button className="p-2 rounded hover:bg-gray-200" onClick={() => onChange(shiftDate(currentDate, days, 1))}>

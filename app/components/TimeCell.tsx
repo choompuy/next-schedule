@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { TimeCellProps } from "@/app/types/calendar";
 
-export default function TimeCell({ step, rowIndex, rowEnd }: TimeCellProps) {
+export const TimeCell = ({ step, rowIndex, rowEnd }: TimeCellProps) => {
     const formatTime = (mins: number) => {
         const h = Math.floor(mins / 60);
         const m = mins % 60;
@@ -17,4 +18,6 @@ export default function TimeCell({ step, rowIndex, rowEnd }: TimeCellProps) {
             {formatTime(mins)}
         </div>
     );
-}
+};
+
+export default memo(TimeCell);

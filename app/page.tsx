@@ -1,25 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarView, Schedule, Lesson } from "@/app/types/calendar";
+import { Schedule, Lesson, TimeSlot } from "./types/calendar";
+import { useResponsiveView } from "./utils/useResponsiveView";
 import { SchedulesData } from "./data/schedules";
 import { LessonsData } from "./data/lessons";
-import Calendar from "@/app/components/Calendar";
+import Calendar from "./components/Calendar";
 
 export default function Home() {
-    const [view, setView] = useState<CalendarView>('day');
+    const view = useResponsiveView();
     const [startDate, setStartDate] = useState(new Date());
     const [schedule, setSchedule] = useState<Schedule[]>([]);
     const [lessons, setLessons] = useState<Lesson[]>([]);
 
-    const onSlotSelect = () => {
-        console.log('click');
-    }
+    const onSlotSelect = ({ startTime, endTime }: TimeSlot) => {
+        alert(`Cell: ${startTime}`);
+    };
 
     useEffect(() => {
         const loadData = async () => {
             try {
-                setView("week");
                 setStartDate(new Date(SchedulesData[0].startTime));
                 setSchedule(SchedulesData);
                 setLessons(LessonsData);
